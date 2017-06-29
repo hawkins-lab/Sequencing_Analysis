@@ -1,0 +1,54 @@
+# New System for UCSC Sessions
+# Hosting files at http://depts.washington.edu/hawklab/ucsc_sessions
+
+# 1.
+# login to nexus.gs.washington.edu with your personal account
+
+ssh USERNAME@nexus.gs.washington.edu
+
+# 2.
+# Connect to server with sftp
+sftp hawklab@ovid.u.washington.edu
+password: ##############
+
+# 3.
+# Go to directory for your session (Or make a new directory)
+
+# For public data (pretty much everything)
+cd public_html/ucsc_sessions/public
+
+# For data you want password protected
+cd public_html/ucsc_sessions/private
+
+# Either cd to directory...
+cd project_name
+
+# Or make new directory
+mkdir project_name
+
+# 4.
+# Move files to server
+
+# Either use lcd to change local directory..
+lcd /net/hawkins/vol1/REST_OF_PATH
+
+# or include local path with put
+put /net/hawkins/vol1/REST_OF_PATH/FILE.bw FILE.bw
+
+
+# 5.
+# Access with UCSC custom track
+
+# Hover over "My Data" tab
+# Click "Custom Tracks"
+
+# Click "add custom tracks" button
+
+# Inside "Edit configuration" window paste:
+
+# For public
+track type=bigWig name='Samplename' description='What your sample is' bigDataUrl=http://depts.washington.edu/hawklab/ucsc_sessions/public/YOUR_PROJECT_NAME/FILE.bw
+
+# For private
+track type=bigWig name='Samplename' description='What your sample is' bigDataUrl=http://hawklab:########$@depts.washington.edu/hawklab/ucsc_sessions/public/YOUR_PROJECT_NAME/FILE.bw
+
